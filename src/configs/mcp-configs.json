@@ -1,0 +1,67 @@
+{
+  "_comment": "═══ MCP Configuration Examples for Stitch Design Workflow ═══",
+  "_instructions": "Copy the relevant section into your tool's MCP config file.",
+
+  "claude_code": {
+    "_file": "Run: claude mcp add stitch-workflow -- node /path/to/stitch-workflow/dist/server.js",
+    "_alternative_file": "Or add to ~/.claude/settings.json under mcpServers:",
+    "config": {
+      "stitch-workflow": {
+        "command": "node",
+        "args": ["/path/to/stitch-workflow/dist/server.js"],
+        "env": {
+          "STITCH_API_KEY": "your-stitch-api-key"
+        }
+      }
+    }
+  },
+
+  "vscode": {
+    "_file": ".vscode/mcp.json (in your project root)",
+    "config": {
+      "mcpServers": {
+        "stitch-workflow": {
+          "command": "node",
+          "args": ["/path/to/stitch-workflow/dist/server.js"],
+          "env": {
+            "STITCH_API_KEY": "your-stitch-api-key"
+          }
+        }
+      }
+    }
+  },
+
+  "antigravity": {
+    "_file": "Settings > MCP > Add New Server (or ~/.antigravity/mcp.json)",
+    "config": {
+      "mcpServers": {
+        "stitch-workflow": {
+          "command": "node",
+          "args": ["/path/to/stitch-workflow/dist/server.js"],
+          "env": {
+            "STITCH_API_KEY": "your-stitch-api-key"
+          }
+        }
+      }
+    }
+  },
+
+  "gcloud_adc_alternative": {
+    "_comment": "If you prefer gcloud Application Default Credentials instead of an API key:",
+    "_setup": [
+      "gcloud auth login",
+      "gcloud auth application-default login",
+      "gcloud config set project YOUR_PROJECT_ID",
+      "gcloud beta services mcp enable stitch.googleapis.com"
+    ],
+    "config": {
+      "stitch-workflow": {
+        "command": "node",
+        "args": ["/path/to/stitch-workflow/dist/server.js"],
+        "env": {
+          "GOOGLE_CLOUD_PROJECT": "your-project-id"
+        }
+      }
+    }
+  }
+}
